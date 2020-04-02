@@ -28285,7 +28285,196 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"index.tsx":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"index.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"ui/Dropdown.tsx":[function(require,module,exports) {
+"use strict";
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+  }
+  result["default"] = mod;
+  return result;
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var React = __importStar(require("react"));
+
+exports.Dropdown = function (props) {
+  var selectedValue = props.selectedValue,
+      values = props.values,
+      onChange = props.onChange;
+  return React.createElement("select", {
+    name: "select",
+    onChange: onChange
+  }, values.map(function (dropdownValue) {
+    return React.createElement("option", {
+      value: dropdownValue.value,
+      selected: dropdownValue.value === selectedValue
+    }, dropdownValue.label);
+  }));
+};
+},{"react":"../node_modules/react/index.js"}],"components/RpeCalculator/RpeCalculator.tsx":[function(require,module,exports) {
+"use strict";
+
+var __extends = this && this.__extends || function () {
+  var _extendStatics = function extendStatics(d, b) {
+    _extendStatics = Object.setPrototypeOf || {
+      __proto__: []
+    } instanceof Array && function (d, b) {
+      d.__proto__ = b;
+    } || function (d, b) {
+      for (var p in b) {
+        if (b.hasOwnProperty(p)) d[p] = b[p];
+      }
+    };
+
+    return _extendStatics(d, b);
+  };
+
+  return function (d, b) {
+    _extendStatics(d, b);
+
+    function __() {
+      this.constructor = d;
+    }
+
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  };
+}();
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var Dropdown_1 = require("../../ui/Dropdown");
+
+var React = require("react");
+
+var RpeCalculator =
+/** @class */
+function (_super) {
+  __extends(RpeCalculator, _super);
+
+  function RpeCalculator() {
+    var _this = _super !== null && _super.apply(this, arguments) || this;
+
+    _this.dropdownValues = [1, 2, 3].map(function (x) {
+      return {
+        label: x.toString(),
+        value: x
+      };
+    });
+    return _this;
+  }
+
+  RpeCalculator.prototype.render = function () {
+    return React.createElement("div", null, React.createElement("h1", null, "Rep Calculator"), React.createElement(Dropdown_1.Dropdown, {
+      selectedValue: 1,
+      values: this.dropdownValues,
+      onChange: function onChange() {
+        console.log('test');
+      }
+    }));
+  };
+
+  return RpeCalculator;
+}(React.Component);
+
+exports.default = RpeCalculator;
+},{"../../ui/Dropdown":"ui/Dropdown.tsx","react":"../node_modules/react/index.js"}],"components/RpeCalculator/index.ts":[function(require,module,exports) {
+"use strict";
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var RpeCalculator_1 = __importDefault(require("./RpeCalculator"));
+
+exports.default = RpeCalculator_1.default;
+},{"./RpeCalculator":"components/RpeCalculator/RpeCalculator.tsx"}],"index.tsx":[function(require,module,exports) {
 "use strict";
 
 var __extends = this && this.__extends || function () {
@@ -28324,16 +28513,23 @@ var __importStar = this && this.__importStar || function (mod) {
   return result;
 };
 
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
 var React = __importStar(require("react"));
 
-var react_1 = require("react");
+var react_dom_1 = require("react-dom");
 
-var react_dom_1 = require("react-dom"); // import './index.css'
+require("./index.scss");
 
+var RpeCalculator_1 = __importDefault(require("./components/RpeCalculator"));
 
 var App =
 /** @class */
@@ -28345,14 +28541,14 @@ function (_super) {
   }
 
   App.prototype.render = function () {
-    return React.createElement("h1", null, "Hello World!");
+    return React.createElement("div", null, React.createElement("h1", null, "Hello World!"), React.createElement(RpeCalculator_1.default, null));
   };
 
   return App;
-}(react_1.Component);
+}(React.PureComponent);
 
 react_dom_1.render(React.createElement(App, null), document.getElementById('root'));
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./index.scss":"index.scss","./components/RpeCalculator":"components/RpeCalculator/index.ts"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -28380,7 +28576,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "5770" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "8255" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

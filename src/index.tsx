@@ -1,12 +1,17 @@
-import * as React from 'react'
-import { Component } from 'react'
-import { render } from 'react-dom'
-// import './index.css'
+import * as React from 'react';
+import { render } from 'react-dom';
+import './index.scss';
+import RpeCalculator from './components/RpeCalculator';
 
-class App extends Component {
+class App extends React.PureComponent {
   render() {
-    return (<h1>Hello World!</h1>)
+    return (
+      <div>
+        <h1>Hello World!</h1>
+        <RpeCalculator />
+      </div>
+    );
   }
 }
 
-render(<App />, document.getElementById('root'))
+render(<App />, document.getElementById('root'));
