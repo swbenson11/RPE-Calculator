@@ -9,7 +9,6 @@ class App extends React.PureComponent {
   render() {
     return (
       <Provider store={appStore}>
-        <h1>Hello World!</h1>
         <RpeCalculator />
       </Provider>
     );

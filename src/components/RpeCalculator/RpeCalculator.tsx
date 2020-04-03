@@ -2,7 +2,7 @@ import React = require('react');
 import { connect, ConnectedProps } from 'react-redux';
 
 import { Dropdown } from '../../ui/Dropdown';
-import { updateReps, updateRPE } from './actions';
+import { updateReps, updateRPE, updateWeight } from './actions';
 
 //where does this go?
 // interface State {
@@ -20,7 +20,8 @@ const mapState = (state: any) => ({
 const mapDispatch = (dispatch: any) => {
   return {
     updateRPE: (value: number) => dispatch(updateRPE(value)),
-    updateReps: (value: number) => dispatch(updateReps(value))
+    updateReps: (value: number) => dispatch(updateReps(value)),
+    updateWeight: (value: number) => dispatch(updateWeight(value))
   };
 };
 
@@ -34,8 +35,7 @@ type Props = PropsFromRedux;
 // }
 
 class RpeCalculator extends React.PureComponent<Props> {
-  //todo fix this
-  dropdownValues = [1, 2, 3].map(x => {
+  dropdownValues = [7, 7.5, 8, 8.5, 9, 9.5, 10].map(x => {
     return {
       label: x.toString(),
       value: x
@@ -47,8 +47,33 @@ class RpeCalculator extends React.PureComponent<Props> {
     return (
       <div>
         <h1>Rep Calculator</h1>
+
+        <label>
+          Reps:
+          <input
+            type="text"
+            value={reps}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              var reps = parseInt(event.target.value);
+              if (reps > 6) alert('why are you doing so many reps');
+              updateReps(reps);
+            }}
+          />
+        </label>
+
+        <label>
+          Weight:
+          <input
+            type="text"
+            value={weight}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              updateWeight(parseInt(event.target.value));
+            }}
+          />
+        </label>
+
         <Dropdown
-          selectedValue={1}
+          selectedValue={rpe}
           values={this.dropdownValues}
           onChange={(value: any) => {
             updateRPE(value);
@@ -56,6 +81,7 @@ class RpeCalculator extends React.PureComponent<Props> {
         />
         <h2>RPE: {rpe}</h2>
         <h2>Reps: {reps}</h2>
+        <h2>Weight: {weight}</h2>
       </div>
     );
   }

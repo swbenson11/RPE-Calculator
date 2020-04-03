@@ -13,9 +13,9 @@ import reducers from './reducers';
 
 const initialState = {
   rpeCalculator: {
-    reps: 7,
-    rpe: 7,
-    weight: 7
+    reps: 5,
+    rpe: 8,
+    weight: 250
   }
 };
 

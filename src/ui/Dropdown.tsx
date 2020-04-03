@@ -11,7 +11,7 @@ export const Dropdown = (props: Props) => {
     <select
       name="select"
       onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
-        onChange(parseInt(event.target.value));
+        onChange(parseFloat(event.target.value));
       }}>
       {values.map(dropdownValue => {
         return (
