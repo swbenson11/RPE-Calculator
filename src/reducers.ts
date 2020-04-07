@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import rpeCalculatorReducer from './components/RpeCalculator/reducer';
+import RPECalculatorReducer from './components/RPECalculator/reducer';
 
 export default combineReducers({
-  rpeCalculator: rpeCalculatorReducer
+  RPECalculator: RPECalculatorReducer,
 });

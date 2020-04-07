@@ -1,3 +1,3 @@
-import RpeCalculator from './RpeCalculator';
+import RPECalculator from './RPECalculator';
 
-export default RpeCalculator;
+export default RPECalculator;

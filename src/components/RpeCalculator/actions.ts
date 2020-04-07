@@ -1,21 +1,27 @@
 //action types
 export const UPDATE_REPS = 'UPDATE_REPS';
 export const UPDATE_RPE = 'UPDATE_RPE';
+export const UPDATE_TARGET_RPE = 'UPDATE_TARGET_RPE';
 export const UPDATE_WEIGHT = 'UPDATE_WEIGHT';
 
 // const boundAddTodo = text => dispatch(addTodo(text))
 //Actions with dispatch included
 export const updateReps = (value: number) => ({
   type: UPDATE_REPS,
-  value
+  value,
 });
 
 export const updateRPE = (value: number) => ({
   type: UPDATE_RPE,
-  value
+  value,
+});
+
+export const updateTargetRPE = (value: number) => ({
+  type: UPDATE_TARGET_RPE,
+  value,
 });
 
 export const updateWeight = (value: number) => ({
   type: UPDATE_WEIGHT,
-  value
+  value,
 });

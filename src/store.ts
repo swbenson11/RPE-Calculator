@@ -1,22 +1,22 @@
 import { createStore } from 'redux';
 import reducers from './reducers';
 
-///TODO remove
-// //todo move to state
-// export interface state {
-//   rpeCalculator: {
-//     reps?: number,
-//     rpe?: number,
-//     weight?: number
-//   };
-// }
+export interface State {
+  RPECalculator: {
+    reps: number;
+    RPE: number;
+    targetRPE: number;
+    weight: number;
+  };
+}
 
 const initialState = {
-  rpeCalculator: {
+  RPECalculator: {
     reps: 5,
-    rpe: 8,
-    weight: 250
-  }
+    RPE: 8,
+    targetRPE: 8.5,
+    weight: 250,
+  },
 };
 
 const appStore = createStore(reducers, initialState);

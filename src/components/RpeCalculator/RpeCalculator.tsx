@@ -1,89 +1,64 @@
+import { State } from '../../store';
 import React = require('react');
-import { connect, ConnectedProps } from 'react-redux';
+import { ConnectedProps, connect } from 'react-redux';
 
-import { Dropdown } from '../../ui/Dropdown';
-import { updateReps, updateRPE, updateWeight } from './actions';
+import { updateReps, updateRPE, updateWeight, updateTargetRPE } from './actions';
+import CalculatorInputs from './CalculatorInputs';
 
-//where does this go?
-// interface State {
-//   reps?: number;
-//   rpe?: number;
-//   weight?: number;
-// }
-
-const mapState = (state: any) => ({
-  reps: state.rpeCalculator.reps,
-  rpe: state.rpeCalculator.rpe,
-  weight: state.rpeCalculator.weight
+const mapState = (state: State) => ({
+  reps: state.RPECalculator.reps,
+  RPE: state.RPECalculator.RPE,
+  targetRPE: state.RPECalculator.targetRPE,
+  weight: state.RPECalculator.weight,
 });
 
 const mapDispatch = (dispatch: any) => {
   return {
     updateRPE: (value: number) => dispatch(updateRPE(value)),
+    updateTargetRPE: (value: number) => dispatch(updateTargetRPE(value)),
     updateReps: (value: number) => dispatch(updateReps(value)),
-    updateWeight: (value: number) => dispatch(updateWeight(value))
+    updateWeight: (value: number) => dispatch(updateWeight(value)),
   };
 };
-
 const connector = connect(mapState, mapDispatch);
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
-
 type Props = PropsFromRedux;
-//  & {
-//   backgroundColor: string
-// }
 
-class RpeCalculator extends React.PureComponent<Props> {
-  dropdownValues = [7, 7.5, 8, 8.5, 9, 9.5, 10].map(x => {
-    return {
-      label: x.toString(),
-      value: x
-    };
-  });
-
+class RPECalculator extends React.PureComponent<Props> {
   render() {
-    const { reps, rpe, weight, updateReps, updateRPE } = this.props;
+    const {
+      reps,
+      RPE,
+      targetRPE,
+      weight,
+      updateRPE,
+      updateTargetRPE,
+      updateReps,
+      updateWeight,
+    } = this.props;
+
     return (
       <div>
         <h1>Rep Calculator</h1>
 
-        <label>
-          Reps:
-          <input
-            type="text"
-            value={reps}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              var reps = parseInt(event.target.value);
-              if (reps > 6) alert('why are you doing so many reps');
-              updateReps(reps);
-            }}
-          />
-        </label>
-
-        <label>
-          Weight:
-          <input
-            type="text"
-            value={weight}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              updateWeight(parseInt(event.target.value));
-            }}
-          />
-        </label>
-
-        <Dropdown
-          selectedValue={rpe}
-          values={this.dropdownValues}
-          onChange={(value: any) => {
-            updateRPE(value);
-          }}
+        <CalculatorInputs
+          reps={reps}
+          RPE={RPE}
+          targetRPE={targetRPE}
+          weight={weight}
+          updateRPE={updateRPE}
+          updateTargetRPE={updateTargetRPE}
+          updateReps={updateReps}
+          updateWeight={updateWeight}
         />
-        <h2>RPE: {rpe}</h2>
+
+        <h2>RPE: {RPE}</h2>
+        <h2>Target RPE: {targetRPE}</h2>
         <h2>Reps: {reps}</h2>
         <h2>Weight: {weight}</h2>
       </div>
     );
   }
 }
-export default connector(RpeCalculator);
+export default connector(RPECalculator);
