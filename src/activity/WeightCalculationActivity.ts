@@ -23,7 +23,7 @@ const calculateIncrements = (rpe: number, targetRpe: number) => (rpe - targetRpe
 
 const adjustForPreviousFatigue = (increments: number, rpe: number) => {
   if (rpe < 8) return increments;
-  return increments + (rpe - 7) * 2; //todo 7.5?
+  return increments + (rpe - 7.5) * 2;
 };
 
 // more reps = more fatigue

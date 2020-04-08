@@ -76,9 +76,9 @@ describe('WeightCalculationActivity', () => {
         let weightRanges = [
           { weight: 100, correct: 95 },
           { weight: 200, correct: 190 },
-          { weight: 300, correct: 280 },
-          { weight: 400, correct: 370 },
-          { weight: 500, correct: 460 },
+          { weight: 300, correct: 285 },
+          { weight: 400, correct: 375 },
+          { weight: 500, correct: 470 },
         ];
 
         weightRanges.forEach((pair) => {
@@ -107,9 +107,9 @@ describe('WeightCalculationActivity', () => {
           let weightRanges = [
             { weight: 100, correct: 95 },
             { weight: 200, correct: 190 },
-            { weight: 300, correct: 280 },
-            { weight: 400, correct: 370 },
-            { weight: 500, correct: 460 },
+            { weight: 300, correct: 285 },
+            { weight: 400, correct: 375 },
+            { weight: 500, correct: 470 },
           ];
 
           weightRanges.forEach((pair) => {
@@ -138,10 +138,10 @@ describe('WeightCalculationActivity', () => {
         it('increases drop for 9', () => {
           let weightRanges = [
             { weight: 100, correct: 95 },
-            { weight: 200, correct: 190 },
-            { weight: 300, correct: 285 },
-            { weight: 400, correct: 380 },
-            { weight: 500, correct: 475 },
+            { weight: 200, correct: 195 },
+            { weight: 300, correct: 290 },
+            { weight: 400, correct: 385 },
+            { weight: 500, correct: 480 },
           ];
 
           weightRanges.forEach((pair) => {
@@ -154,9 +154,9 @@ describe('WeightCalculationActivity', () => {
           let weightRanges = [
             { weight: 100, correct: 95 },
             { weight: 200, correct: 190 },
-            { weight: 300, correct: 280 },
-            { weight: 400, correct: 370 },
-            { weight: 500, correct: 460 },
+            { weight: 300, correct: 285 },
+            { weight: 400, correct: 375 },
+            { weight: 500, correct: 470 },
           ];
 
           weightRanges.forEach((pair) => {
@@ -171,11 +171,11 @@ describe('WeightCalculationActivity', () => {
       describe('High RPE + lower target', () => {
         it('increases drop for 9', () => {
           let weightRanges = [
-            { weight: 100, correct: 85 },
+            { weight: 100, correct: 90 },
             { weight: 200, correct: 175 },
             { weight: 300, correct: 260 },
             { weight: 400, correct: 340 },
-            { weight: 500, correct: 415 },
+            { weight: 500, correct: 420 },
           ];
 
           weightRanges.forEach((pair) => {
