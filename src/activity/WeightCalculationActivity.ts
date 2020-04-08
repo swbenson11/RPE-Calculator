@@ -1,10 +1,5 @@
 const LOWEST_WEIGHT_MULTIPLE = 5;
 
-//TODO write tests
-// Make sure this works with adding and removing wegiht
-//TODO Make this super functional
-
-//BUG - we assume reps are always the same
 export const WeightCalculationActivity = (
   reps: number,
   weight: number,

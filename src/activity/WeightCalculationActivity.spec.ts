@@ -187,5 +187,3 @@ describe('WeightCalculationActivity', () => {
     });
   });
 });
-
-//TODO test it increasing weight
