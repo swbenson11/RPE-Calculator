@@ -40,11 +40,14 @@ export const CalculateIncrementValue = (weight: number) => {
   let x = 0.0083333333;
   // now we want to make is have a slight exponential growth/decay
   // where the higher above 200 the more the interment is exaggerated
-  return weight * x * Math.pow(1 + (-200 + weight) / 1500, 2);
+
+  // Math.min(weight, 120) is done because below a certain point weight
+  // has too much bearing on the increments.
+  return Math.max(weight, 120) * x * Math.pow(1 + (-200 + weight) / 1500, 2);
 };
 
-// TODO add "egoLift attribute to effect rounding"
-const normalizeWeight = (weight: number) =>
-  Math.floor(weight / LOWEST_WEIGHT_MULTIPLE) * LOWEST_WEIGHT_MULTIPLE;
-
+// TODO add "egoLift" attribute to effect rounding"
+const normalizeWeight = (weight: number) => {
+  return Math.round(weight / LOWEST_WEIGHT_MULTIPLE) * LOWEST_WEIGHT_MULTIPLE;
+};
 export default WeightCalculationActivity;

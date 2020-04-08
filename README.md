@@ -9,6 +9,6 @@ Because of the many factors of the calculation I thought this project would make
 ### Goals of project
 
 - Working RPE calculator
-- Demonstrate that I can infact do "code"
+- Demonstrate that I can in fact do "code"
 - Learn Redux
 - Experiment with functional programming in the calculation

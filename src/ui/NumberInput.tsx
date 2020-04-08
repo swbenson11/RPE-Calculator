@@ -27,7 +27,7 @@ export const NumberInput = React.memo((props: Props) => {
       ) => {
         let value = data.value.replace(/\D/g, '');
         if (value === '') value = 0;
-        onChange(value);
+        onChange(parseInt(value));
       }}
     />
   );

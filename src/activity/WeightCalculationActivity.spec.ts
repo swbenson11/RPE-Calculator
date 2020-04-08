@@ -77,7 +77,7 @@ describe('WeightCalculationActivity', () => {
           { weight: 100, correct: 95 },
           { weight: 200, correct: 190 },
           { weight: 300, correct: 285 },
-          { weight: 400, correct: 375 },
+          { weight: 400, correct: 380 },
           { weight: 500, correct: 470 },
         ];
 
@@ -89,11 +89,11 @@ describe('WeightCalculationActivity', () => {
 
       it('decreases drops for low reps', () => {
         let weightRanges = [
-          { weight: 100, correct: 95 },
-          { weight: 200, correct: 195 },
-          { weight: 300, correct: 295 },
-          { weight: 400, correct: 395 },
-          { weight: 500, correct: 495 },
+          { weight: 100, correct: 100 },
+          { weight: 200, correct: 200 },
+          { weight: 300, correct: 300 },
+          { weight: 400, correct: 400 },
+          { weight: 500, correct: 500 },
         ];
 
         weightRanges.forEach((pair) => {
@@ -108,7 +108,7 @@ describe('WeightCalculationActivity', () => {
             { weight: 100, correct: 95 },
             { weight: 200, correct: 190 },
             { weight: 300, correct: 285 },
-            { weight: 400, correct: 375 },
+            { weight: 400, correct: 380 },
             { weight: 500, correct: 470 },
           ];
 
@@ -121,10 +121,10 @@ describe('WeightCalculationActivity', () => {
         it('increases weight for a higher rpe', () => {
           let weightRanges = [
             { weight: 100, correct: 105 },
-            { weight: 200, correct: 210 },
-            { weight: 300, correct: 320 },
-            { weight: 400, correct: 430 },
-            { weight: 500, correct: 545 },
+            { weight: 200, correct: 215 },
+            { weight: 300, correct: 325 },
+            { weight: 400, correct: 435 },
+            { weight: 500, correct: 550 },
           ];
 
           weightRanges.forEach((pair) => {
@@ -155,7 +155,7 @@ describe('WeightCalculationActivity', () => {
             { weight: 100, correct: 95 },
             { weight: 200, correct: 190 },
             { weight: 300, correct: 285 },
-            { weight: 400, correct: 375 },
+            { weight: 400, correct: 380 },
             { weight: 500, correct: 470 },
           ];
 
@@ -172,9 +172,9 @@ describe('WeightCalculationActivity', () => {
         it('increases drop for 9', () => {
           let weightRanges = [
             { weight: 100, correct: 90 },
-            { weight: 200, correct: 175 },
-            { weight: 300, correct: 260 },
-            { weight: 400, correct: 340 },
+            { weight: 200, correct: 180 },
+            { weight: 300, correct: 265 },
+            { weight: 400, correct: 345 },
             { weight: 500, correct: 420 },
           ];
 
