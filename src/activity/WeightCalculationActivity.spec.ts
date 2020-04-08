@@ -106,15 +106,15 @@ describe('WeightCalculationActivity', () => {
         it('reduces weight for a lower rpe', () => {
           let weightRanges = [
             { weight: 100, correct: 95 },
-            { weight: 200, correct: 195 },
-            { weight: 300, correct: 295 },
-            { weight: 400, correct: 395 },
-            { weight: 500, correct: 495 },
+            { weight: 200, correct: 190 },
+            { weight: 300, correct: 280 },
+            { weight: 400, correct: 370 },
+            { weight: 500, correct: 460 },
           ];
 
           weightRanges.forEach((pair) => {
             let calculated = WeightCalculationActivity(5, pair.weight, 8, 7);
-            expect(calculated).toBe(pair.weight);
+            expect(calculated).toBe(pair.correct);
           });
         });
 
@@ -122,14 +122,14 @@ describe('WeightCalculationActivity', () => {
           let weightRanges = [
             { weight: 100, correct: 105 },
             { weight: 200, correct: 210 },
-            { weight: 300, correct: 315 },
-            { weight: 400, correct: 420 },
-            { weight: 500, correct: 530 },
+            { weight: 300, correct: 320 },
+            { weight: 400, correct: 430 },
+            { weight: 500, correct: 545 },
           ];
 
           weightRanges.forEach((pair) => {
             let calculated = WeightCalculationActivity(5, pair.weight, 7, 9);
-            expect(calculated).toBe(pair.weight);
+            expect(calculated).toBe(pair.correct);
           });
         });
       });
