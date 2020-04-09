@@ -1,24 +1,34 @@
+import { pipe, compose } from 'ramda';
+
 const LOWEST_WEIGHT_MULTIPLE = 5;
 
 export const WeightCalculationActivity = (
   reps: number,
   weight: number,
-  rpe: number,
-  targetRpe: number
+  RPE: number,
+  targetRPE: number
 ) => {
-  let value = calculateIncrements(rpe, targetRpe);
-  value = adjustForPreviousFatigue(value, rpe);
-  value = adjustForReps(value, reps);
-  value = calculateTotalWeight(value, weight);
-  value = normalizeWeight(value);
-  return value;
+  //use closure to create curried functions
+  let incrementCalculation = (x: number) => calculateIncrements(RPE, x);
+  let adjustmentForFatigue = (x: number) => adjustForPreviousFatigue(x, RPE);
+  let adjustmentForReps = (x: number) => adjustForReps(x, reps);
+  let weightCalculation = (x: number) => calculateTotalWeight(x, weight);
+
+  let calculation = pipe(
+    incrementCalculation,
+    adjustmentForFatigue,
+    adjustmentForReps,
+    weightCalculation,
+    normalizeWeight
+  );
+  return calculation(targetRPE);
 };
 
-const calculateIncrements = (rpe: number, targetRpe: number) => (rpe - targetRpe) * 4;
+const calculateIncrements = (RPE: number, targetRPE: number) => (RPE - targetRPE) * 4;
 
-const adjustForPreviousFatigue = (increments: number, rpe: number) => {
-  if (rpe < 8) return increments;
-  return increments + (rpe - 7.5) * 2;
+const adjustForPreviousFatigue = (increments: number, RPE: number) => {
+  if (RPE < 8) return increments;
+  return increments + (RPE - 7.5) * 2;
 };
 
 // more reps = more fatigue
