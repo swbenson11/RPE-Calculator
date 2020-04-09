@@ -18,8 +18,12 @@ class CalculatorInputs extends React.PureComponent<Props> {
     };
   });
 
-  parseForecast = (weights: Array<number>) => {
-    return weights.map((weight: number) => `${weight} lbs`).join(', ');
+  styleForecast = (weights: Array<number>) => {
+    return weights.map((weight: number, index: number) => (
+      <p>
+        Set {index + 2}: {weight} lbs
+      </p>
+    ));
   };
 
   render() {
@@ -36,12 +40,12 @@ class CalculatorInputs extends React.PureComponent<Props> {
             {targetRPE}
           </p>
           <p>
-            <p className={'largeText'}>
+            <p className={'largeText '}>
               <span className={'underline mediumText'}>
                 Weight Forecast to maintain a RPE {targetRPE}
               </span>
               <br />
-              {this.parseForecast(weightForecast)}
+              <div className={''}>{this.styleForecast(weightForecast)}</div>
             </p>
           </p>
         </div>
