@@ -1,8 +1,7 @@
 import React = require('react');
-import WeightCalculationActivity from '../../../activity/WeightCalculationActivity';
+import { CalculateEntireWorkout } from '../../../activity/CalculateEntireWorkoutActivity';
 
 import './CalculatorOutputs.scss';
-import { CalculateEntireWorkout } from '../../../activity/CalculateEntireWorkoutActivity';
 
 type Props = {
   RPE: number;

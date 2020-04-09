@@ -5,7 +5,6 @@ import { UPDATE_REPS, UPDATE_RPE, UPDATE_TARGET_RPE, UPDATE_WEIGHT } from './act
 export default function RPECalculatorReducer(state = {}, action: any) {
   switch (action.type) {
     case UPDATE_REPS:
-      if (action.value > 6) alert('why are you doing so many reps');
       return Object.assign({}, state, {
         reps: action.value,
       });
