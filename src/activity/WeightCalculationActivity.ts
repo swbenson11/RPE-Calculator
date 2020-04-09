@@ -1,4 +1,4 @@
-import { pipe, compose } from 'ramda';
+import { pipe } from 'ramda';
 
 const LOWEST_WEIGHT_MULTIPLE = 5;
 

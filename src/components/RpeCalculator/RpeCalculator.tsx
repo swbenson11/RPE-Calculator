@@ -4,7 +4,7 @@ import { ConnectedProps, connect } from 'react-redux';
 
 import { updateReps, updateRPE, updateWeight, updateTargetRPE } from './actions';
 import CalculatorInputs from './CalculatorInputs';
-import WeightCalculationActivity from '../../activity/WeightCalculationActivity';
+import CalculatorOutputs from './CalculatorOutputs';
 
 const mapState = (state: State) => ({
   reps: state.RPECalculator.reps,
@@ -41,7 +41,7 @@ class RPECalculator extends React.PureComponent<Props> {
 
     return (
       <div>
-        <h1>Rep Calculator</h1>
+        <h2>Rep Calculator</h2>
 
         <CalculatorInputs
           reps={reps}
@@ -54,12 +54,12 @@ class RPECalculator extends React.PureComponent<Props> {
           updateWeight={updateWeight}
         />
 
-        <h2>RPE: {RPE}</h2>
-        <h2>Target RPE: {targetRPE}</h2>
-        <h2>Reps: {reps}</h2>
-        <h2>Weight: {weight}</h2>
-
-        <h2>Next Set: {WeightCalculationActivity(reps, weight, RPE, targetRPE)}</h2>
+        <CalculatorOutputs
+          reps={reps}
+          RPE={RPE}
+          targetRPE={targetRPE}
+          weight={weight}
+        />
       </div>
     );
   }

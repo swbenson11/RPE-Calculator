@@ -35,7 +35,7 @@ class CalculatorInputs extends React.PureComponent<Props> {
       updateWeight,
     } = this.props;
     return (
-      <div className={'calculatorInputs'}>
+      <div className={'paddingLeft'}>
         <div className={'calculatorInput'}>
           <label>Reps:</label>
 
