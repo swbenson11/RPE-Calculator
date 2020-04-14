@@ -7,7 +7,7 @@ export const CalculateEntireWorkout: any = (
   targetRPE: number,
   sets: number
 ) => {
-  let currentWeight = WeightCalculationActivity(
+  const currentWeight = WeightCalculationActivity(
     reps,
     warmupWeight,
     warmupRPE,

@@ -18,7 +18,7 @@ class CalculatorInputs extends React.PureComponent<Props> {
     };
   });
 
-  styleForecast = (weights: Array<number>) => {
+  styledForecast = (weights: Array<number>) => {
     return weights.map((weight: number, index: number) => (
       <p>
         Set {index + 2}: {weight} lbs
@@ -28,8 +28,12 @@ class CalculatorInputs extends React.PureComponent<Props> {
 
   render() {
     const { reps, RPE, targetRPE, weight } = this.props;
-    let weightForecast = CalculateEntireWorkout(reps, weight, RPE, targetRPE, 5);
-    let nextWeight = weightForecast.splice(0, 1);
+    const weightForecast = CalculateEntireWorkout(reps, weight, RPE, targetRPE, 5);
+    const nextWeight = weightForecast.splice(0, 1);
+
+    const totalVolume = weightForecast.reduce((total: number, num: number) => {
+      return num * reps;
+    });
 
     return (
       <div className={'calculatorOutputs'}>
@@ -45,7 +49,9 @@ class CalculatorInputs extends React.PureComponent<Props> {
                 Weight Forecast to maintain a RPE {targetRPE}
               </span>
               <br />
-              <div className={''}>{this.styleForecast(weightForecast)}</div>
+              <div>{this.styledForecast(weightForecast)}</div>
+              <br />
+              <span>Total Projected Volume: {totalVolume}</span>
             </p>
           </p>
         </div>
