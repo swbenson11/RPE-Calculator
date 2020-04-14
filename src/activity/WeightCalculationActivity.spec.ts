@@ -1,3 +1,9 @@
+import {
+  WeightCalculationActivity,
+  CalculateIncrementValue,
+  CurriedWeightCalculationActivity,
+} from './WeightCalculationActivity';
+
 // So this is a testing file for the weight calculation.
 // This is hard to test because of all the possible variables, and values that
 // this code can produce. I'm trying to turn my "feels" in the gym into a
@@ -18,11 +24,6 @@
 // However, this does encourage me to only tune the part of the calculation being
 // tested. Perhaps I could have used a range for my test values.
 
-import {
-  WeightCalculationActivity,
-  CalculateIncrementValue,
-} from './WeightCalculationActivity';
-
 describe('WeightCalculationActivity', () => {
   // logic without exponential growth of increment values:
   // 450 should be around 3.75 pound increments
@@ -30,8 +31,8 @@ describe('WeightCalculationActivity', () => {
   // 150 should be 1.5
 
   it('calculates weight 200 correctly', () => {
-    let calculation = CalculateIncrementValue(200);
-    let roundedValue = Math.round(calculation * 10) / 10;
+    const calculation = CalculateIncrementValue(200);
+    const roundedValue = Math.round(calculation * 10) / 10;
 
     expect(roundedValue).toBe(1.7);
   });
@@ -42,7 +43,7 @@ describe('WeightCalculationActivity', () => {
 
   it('calculates weight 450 correctly', () => {
     // This old_increment_increase ensure that the increment value is growing
-    let old_increment_increase = CalculateIncrementValue(300) - 2.5;
+    const old_increment_increase = CalculateIncrementValue(300) - 2.5;
     expect(CalculateIncrementValue(450)).toBeGreaterThan(
       3.75 + old_increment_increase
     );
@@ -53,7 +54,7 @@ describe('WeightCalculationActivity', () => {
   });
 
   it('calculates less than 80', () => {
-    let old_increment_decrease = CalculateIncrementValue(150) - 1.25;
+    const old_increment_decrease = CalculateIncrementValue(150) - 1.25;
     expect(CalculateIncrementValue(80)).toBeLessThan(1 + old_increment_decrease);
   });
 });
@@ -62,10 +63,10 @@ describe('WeightCalculationActivity', () => {
   describe('Single factor tests', () => {
     describe('Static RPE, average weight', () => {
       it('returns the start weight with low rpe, medium reps', () => {
-        let weightRanges = [100, 200, 300, 400, 500];
+        const weightRanges = [100, 200, 300, 400, 500];
 
         weightRanges.forEach((weight) => {
-          let calculated = WeightCalculationActivity(5, weight, 7, 7);
+          const calculated = WeightCalculationActivity(5, weight, 7, 7);
           expect(calculated).toBe(weight);
         });
       });
@@ -73,7 +74,7 @@ describe('WeightCalculationActivity', () => {
 
     describe('Different reps', () => {
       it('increases drop for high reps', () => {
-        let weightRanges = [
+        const weightRanges = [
           { weight: 100, correct: 95 },
           { weight: 200, correct: 190 },
           { weight: 300, correct: 285 },
@@ -82,13 +83,13 @@ describe('WeightCalculationActivity', () => {
         ];
 
         weightRanges.forEach((pair) => {
-          let calculated = WeightCalculationActivity(8, pair.weight, 8, 8);
+          const calculated = WeightCalculationActivity(8, pair.weight, 8, 8);
           expect(calculated).toBe(pair.correct);
         });
       });
 
       it('decreases drops for low reps', () => {
-        let weightRanges = [
+        const weightRanges = [
           { weight: 100, correct: 100 },
           { weight: 200, correct: 200 },
           { weight: 300, correct: 300 },
@@ -97,14 +98,14 @@ describe('WeightCalculationActivity', () => {
         ];
 
         weightRanges.forEach((pair) => {
-          let calculated = WeightCalculationActivity(3, pair.weight, 8, 8);
+          const calculated = WeightCalculationActivity(3, pair.weight, 8, 8);
           expect(calculated).toBe(pair.correct);
         });
       });
 
       describe('Different rpe', () => {
         it('reduces weight for a lower rpe', () => {
-          let weightRanges = [
+          const weightRanges = [
             { weight: 100, correct: 95 },
             { weight: 200, correct: 190 },
             { weight: 300, correct: 285 },
@@ -113,13 +114,13 @@ describe('WeightCalculationActivity', () => {
           ];
 
           weightRanges.forEach((pair) => {
-            let calculated = WeightCalculationActivity(5, pair.weight, 8, 7);
+            const calculated = WeightCalculationActivity(5, pair.weight, 8, 7);
             expect(calculated).toBe(pair.correct);
           });
         });
 
         it('increases weight for a higher rpe', () => {
-          let weightRanges = [
+          const weightRanges = [
             { weight: 100, correct: 105 },
             { weight: 200, correct: 215 },
             { weight: 300, correct: 325 },
@@ -128,7 +129,7 @@ describe('WeightCalculationActivity', () => {
           ];
 
           weightRanges.forEach((pair) => {
-            let calculated = WeightCalculationActivity(5, pair.weight, 7, 9);
+            const calculated = WeightCalculationActivity(5, pair.weight, 7, 9);
             expect(calculated).toBe(pair.correct);
           });
         });
@@ -136,7 +137,7 @@ describe('WeightCalculationActivity', () => {
 
       describe('High RPE', () => {
         it('increases drop for 9', () => {
-          let weightRanges = [
+          const weightRanges = [
             { weight: 100, correct: 95 },
             { weight: 200, correct: 195 },
             { weight: 300, correct: 290 },
@@ -145,13 +146,13 @@ describe('WeightCalculationActivity', () => {
           ];
 
           weightRanges.forEach((pair) => {
-            let calculated = WeightCalculationActivity(5, pair.weight, 9, 9);
+            const calculated = WeightCalculationActivity(5, pair.weight, 9, 9);
             expect(calculated).toBe(pair.correct);
           });
         });
 
         it('increases drop even more for 10', () => {
-          let weightRanges = [
+          const weightRanges = [
             { weight: 100, correct: 95 },
             { weight: 200, correct: 190 },
             { weight: 300, correct: 285 },
@@ -160,7 +161,7 @@ describe('WeightCalculationActivity', () => {
           ];
 
           weightRanges.forEach((pair) => {
-            let calculated = WeightCalculationActivity(5, pair.weight, 10, 10);
+            const calculated = WeightCalculationActivity(5, pair.weight, 10, 10);
             expect(calculated).toBe(pair.correct);
           });
         });
@@ -170,7 +171,7 @@ describe('WeightCalculationActivity', () => {
     describe('Multi factory tests', () => {
       describe('High RPE + lower target', () => {
         it('increases drop for 9', () => {
-          let weightRanges = [
+          const weightRanges = [
             { weight: 100, correct: 90 },
             { weight: 200, correct: 180 },
             { weight: 300, correct: 265 },
@@ -179,11 +180,44 @@ describe('WeightCalculationActivity', () => {
           ];
 
           weightRanges.forEach((pair) => {
-            let calculated = WeightCalculationActivity(5, pair.weight, 10, 8);
+            const calculated = WeightCalculationActivity(5, pair.weight, 10, 8);
             expect(calculated).toBe(pair.correct);
           });
         });
       });
+    });
+  });
+});
+
+describe('Currying tests', () => {
+  const reps = 8;
+  const RPE = 9;
+  const targetRPE = 10;
+  const weightRanges = [100, 200, 300, 400, 500];
+
+  describe('CurriedWeightCalculationActivity', () => {
+    it('produces the same results as WeightCalculationActivity', () => {
+      weightRanges.forEach((weight) => {
+        const curried = CurriedWeightCalculationActivity(targetRPE)(RPE)(reps)(
+          weight
+        );
+        const nonCurried = WeightCalculationActivity(reps, weight, RPE, targetRPE);
+        expect(curried).toBe(nonCurried);
+      });
+    });
+  });
+
+  describe('Partial Implementation', () => {
+    it('produces the same results as WeightCalculationActivity', () => {
+      const RPE7Calculation = (RPE: number) => (reps: number) => (weight: number) => {
+        CurriedWeightCalculationActivity(7)(weight)(RPE)(targetRPE);
+
+        weightRanges.forEach((weight) => {
+          const curried = RPE7Calculation(RPE)(reps)(weight);
+          const nonCurried = WeightCalculationActivity(reps, weight, RPE, targetRPE);
+          expect(curried).toBe(nonCurried);
+        });
+      };
     });
   });
 });

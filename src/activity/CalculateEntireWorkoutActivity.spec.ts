@@ -17,21 +17,6 @@ it('properly calculates an entire workout ', () => {
     );
   }
 
-  // Dumb experiment to generate this with reduce.
-  // let correctValues = [
-  //   WeightCalculationActivity(reps, warmupWeight, warmupRPE, targetRPE),
-  // ];
-  // [1, 2, 3, 4].reduce((previousWeight, index) => {
-  //   let weight = WeightCalculationActivity(
-  //     reps,
-  //     previousWeight,
-  //     targetRPE,
-  //     targetRPE
-  //   );
-  //   correctValues.push(weight);
-  //   return weight;
-  // }, correctValues[0]);
-
   expect(
     CalculateEntireWorkout(reps, warmupWeight, warmupRPE, targetRPE, sets)
   ).toEqual(correctValues);
