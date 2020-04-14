@@ -22,12 +22,12 @@ export const WeightCalculationActivity = (
   targetRPE: number
 ) => {
   //use closure to create curried functions
-  let incrementCalculation = (x: number) => calculateIncrements(RPE, x);
-  let adjustmentForFatigue = (x: number) => adjustForPreviousRPE(x, RPE);
-  let adjustmentForReps = (x: number) => adjustForPreviousReps(x, reps);
-  let weightCalculation = (x: number) => calculateTotalWeight(x, weight);
+  const incrementCalculation = (x: number) => calculateIncrements(RPE, x);
+  const adjustmentForFatigue = (x: number) => adjustForPreviousRPE(x, RPE);
+  const adjustmentForReps = (x: number) => adjustForPreviousReps(x, reps);
+  const weightCalculation = (x: number) => calculateTotalWeight(x, weight);
 
-  let calculation = pipe(
+  const calculation = pipe(
     incrementCalculation,
     adjustmentForFatigue,
     adjustmentForReps,
@@ -76,7 +76,7 @@ const calculateTotalWeight = (increments: number, weight: number) =>
 export const CalculateIncrementValue = (weight: number) => {
   // x * weight should result in increment of
   //  3.75 for 400, 2.5 pound increments for 300,  1.5 for 150
-  let x = 0.0083333333;
+  const x = 0.0083333333;
   // now we want to make is have a slight exponential growth/decay
   // where the higher above 200 the more the interment is exaggerated
 

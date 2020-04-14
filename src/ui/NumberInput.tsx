@@ -10,11 +10,11 @@ interface Props {
 }
 
 export const NumberInput = React.memo((props: Props) => {
-  let { value, onChange, className } = props;
+  const { value, onChange, className } = props;
   // This is a tad over engineered for it's use, but I want this to
   // be reuseable and I'm trying to display
   // how I would do in a professional environment
-  let vettedValue = EnsureIsNumber(value);
+  const vettedValue = EnsureIsNumber(value);
 
   return (
     <Input
@@ -25,7 +25,7 @@ export const NumberInput = React.memo((props: Props) => {
         event: React.SyntheticEvent<HTMLElement, Event>,
         data: InputProps
       ) => {
-        let value = data.value.replace(/\D/g, '');
+        const value = data.value.replace(/\D/g, '');
         if (value === '') value = 0;
         onChange(parseInt(value));
       }}

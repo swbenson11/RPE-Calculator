@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const StyledDropdown = React.memo((props: Props) => {
-  let { selectedValue, values, onChange, wrappingClass } = props;
+  const { selectedValue, values, onChange, wrappingClass } = props;
 
   return (
     <div className={wrappingClass}>

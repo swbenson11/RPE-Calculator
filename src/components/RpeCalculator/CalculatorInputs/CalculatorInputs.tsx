@@ -23,6 +23,33 @@ class CalculatorInputs extends React.PureComponent<Props> {
     };
   });
 
+  WrappedNumberInput = (label: string, value: number, updateFunction: Function) => (
+    <div className={'calculatorInput'}>
+      <label>{label}</label>
+      <NumberInput
+        className={'calculatorInputItem'}
+        value={value}
+        onChange={(value: number) => {
+          updateFunction(value);
+        }}
+      />
+    </div>
+  );
+
+  WrappedDropdown = (label: string, value: number, updateFunction: Function) => (
+    <div className={'calculatorInput'}>
+      <label>{label}</label>
+      <StyledDropdown
+        wrappingClass={'calculatorInputItem'}
+        selectedValue={value}
+        values={this.dropdownValues}
+        onChange={(value: string) => {
+          updateFunction(value);
+        }}
+      />
+    </div>
+  );
+
   render() {
     const {
       reps,
@@ -36,55 +63,13 @@ class CalculatorInputs extends React.PureComponent<Props> {
     } = this.props;
     return (
       <div className={'paddingLeft'}>
-        <div className={'calculatorInput'}>
-          <label>Reps:</label>
+        {this.WrappedNumberInput('Reps:', reps, updateReps)}
 
-          <NumberInput
-            className={'calculatorInputItem'}
-            value={reps}
-            onChange={(value: number) => {
-              updateReps(value);
-            }}
-          />
-        </div>
+        {this.WrappedNumberInput('Weight:', weight, updateWeight)}
 
-        <div className={'calculatorInput'}>
-          <label>Weight:</label>
+        {this.WrappedDropdown('RPE:', RPE, updateRPE)}
 
-          <NumberInput
-            className={'calculatorInputItem'}
-            value={weight}
-            onChange={(value: number) => {
-              updateWeight(value);
-            }}
-          />
-        </div>
-
-        <div className={'calculatorInput'}>
-          <label>RPE:</label>
-
-          <StyledDropdown
-            wrappingClass={'calculatorInputItem'}
-            selectedValue={RPE}
-            values={this.dropdownValues}
-            onChange={(value: string) => {
-              updateRPE(value);
-            }}
-          />
-        </div>
-
-        <div className={'calculatorInput'}>
-          <label>Next Target RPE:</label>
-
-          <StyledDropdown
-            wrappingClass={'calculatorInputItem'}
-            selectedValue={targetRPE}
-            values={this.dropdownValues}
-            onChange={(value: string) => {
-              updateTargetRPE(value);
-            }}
-          />
-        </div>
+        {this.WrappedDropdown('Next Target RPE:', targetRPE, updateTargetRPE)}
       </div>
     );
   }
