@@ -1,0 +1,46 @@
+@import './variables.scss';
+// a place for shared css classes
+.strong-text {
+  font-weight: bold;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.large-text {
+  font-size: 20px;
+}
+
+.medium-text {
+  font-size: 16px;
+}
+
+.padding-left {
+  padding-left: 15px;
+}
+
+.margin-bottom {
+  margin-bottom: 15px;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+h1 {
+  font-size: x-large;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+label {
+  color: $color-font-header;
+}
+
+p {
+  color: $color-font;
+}

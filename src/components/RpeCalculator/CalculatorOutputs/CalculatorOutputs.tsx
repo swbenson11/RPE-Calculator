@@ -29,31 +29,26 @@ class CalculatorInputs extends React.PureComponent<Props> {
   render() {
     const { reps, RPE, targetRPE, weight } = this.props;
     const weightForecast = CalculateEntireWorkout(reps, weight, RPE, targetRPE, 5);
-    const nextWeight = weightForecast.splice(0, 1);
+    const totalVolume = weightForecast.reduce((acc: number, val: number) => {
+      return acc + val * reps;
+    }, 0);
 
-    const totalVolume = weightForecast.reduce((total: number, num: number) => {
-      return num * reps;
-    });
-
+    // I'm avoiding splice on weight forecast directly to avoid side effects, like creating
+    // temporal dependencies for when totalVolume is calculated.
+    const predictedSets = [...weightForecast].splice(1, weightForecast.length - 1);
     return (
-      <div className={'calculatorOutputs'}>
-        <h3>Results</h3>
-        <div className={'paddingLeft'}>
-          <p className={'largeText'}>
-            Next Set: {reps} x <span className="strongText">{nextWeight}</span> lbs @
-            {targetRPE}
-          </p>
-          <p>
-            <p className={'largeText '}>
-              <span className={'underline mediumText'}>
-                Weight Forecast to maintain a RPE {targetRPE}
-              </span>
-              <br />
-              <div>{this.styledForecast(weightForecast)}</div>
-              <br />
-              <span>Total Projected Volume: {totalVolume}</span>
-            </p>
-          </p>
+      <div className={'calculatorOutputs large-text'}>
+        <div>
+          <h1>
+            Results: Next Set: {reps} x {weightForecast[0]}lbs @{targetRPE}
+          </h1>
+        </div>
+
+        <div className="weight-forecast">
+          <h2>Project weight selection to maintain a RPE {targetRPE}:</h2>
+          <p>Please note, this is a projection. Your RPE will vary in application.</p>
+          <div>{this.styledForecast(predictedSets)}</div>
+          <h2>Total Projected Volume (sum of (reps X weight)): {totalVolume}</h2>
         </div>
       </div>
     );

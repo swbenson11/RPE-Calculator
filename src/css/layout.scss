@@ -1,0 +1,32 @@
+@import './variables.scss';
+// a place for layout specific css
+
+/* top | right | bottom | left */
+$cell-padding: 5px 0px 15px 0px;
+
+.grid-container {
+  display: grid;
+  // grid-template-columns: auto auto auto;
+  // grid-template-rows: auto auto auto;
+}
+
+.grid-item {
+  padding: $cell-padding;
+}
+
+.grid-row {
+  grid-column: 1 / span 3;
+  grid-row: 3;
+  padding: $cell-padding;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  background-color: $color-background-1;
+  border: 10px solid $color-background-2;
+}
+
+// * {
+//   box-sizing: border-box;
+// }

@@ -6,12 +6,13 @@ label {
   padding-right: 15px;
 }
 
-.calculatorInput {
+.calculator-input {
   width: 400px;
   padding-bottom: 15px;
+  display: inline-block;
 }
 
-.calculatorInputItem {
+.calculator-input-item {
   display: inline-block;
   width: 70%;
 }
