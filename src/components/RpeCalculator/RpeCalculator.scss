@@ -1,3 +1,21 @@
+@import '../../css/variables.scss';
+
 .rpe-calculator {
   text-align: center;
+}
+
+.grid-item {
+  background-color: $color-gray-2;
+  border-radius: 25px;
+  margin: 10px;
+}
+
+h1,
+label {
+  color: $color-primary-darker;
+}
+p,
+h2,
+h3 {
+  color: $color-primary-dark;
 }

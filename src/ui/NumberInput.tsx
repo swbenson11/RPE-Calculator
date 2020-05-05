@@ -25,7 +25,7 @@ export const NumberInput = React.memo((props: Props) => {
         event: React.SyntheticEvent<HTMLElement, Event>,
         data: InputProps
       ) => {
-        const value = data.value.replace(/\D/g, '');
+        let value = data.value.replace(/\D/g, '');
         if (value === '') value = 0;
         onChange(parseInt(value));
       }}

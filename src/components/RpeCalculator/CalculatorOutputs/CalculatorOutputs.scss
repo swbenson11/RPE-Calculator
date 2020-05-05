@@ -1,3 +1,13 @@
+@import '../../../css/variables.scss';
+@import '../../../css/layout.scss';
+
 .weight-forecast {
   padding-top: 20px;
+}
+
+.weight-forecast-grid-container {
+  @extend .grid-container;
+  display: inline-grid;
+  grid-template-columns: repeat(2, 300px);
+  grid-template-rows: repeat(2, auto);
 }

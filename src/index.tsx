@@ -13,7 +13,12 @@ class App extends React.PureComponent {
     return (
       <Provider store={appStore}>
         <div className="grid-container ">
-          <RPECalculator />
+          <div className="side-columns" />
+          <div className="main-column">
+            <RPECalculator />
+          </div>
+
+          <div className="side-columns" />
         </div>
       </Provider>
     );

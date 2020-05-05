@@ -40,16 +40,26 @@ class CalculatorInputs extends React.PureComponent<Props> {
       <div className={'calculatorOutputs large-text'}>
         <div>
           <h1>
-            Results: Next Set: {reps} x {weightForecast[0]}lbs @{targetRPE}
+            Next Set: {reps} x {weightForecast[0]}lbs @{targetRPE}
           </h1>
         </div>
 
         <div className="weight-forecast">
-          <h2>Project weight selection to maintain a RPE {targetRPE}:</h2>
-          <p>Please note, this is a projection. Your RPE will vary in application.</p>
-          <div>{this.styledForecast(predictedSets)}</div>
-          <h2>Total Projected Volume (sum of (reps X weight)): {totalVolume}</h2>
+          <div className="weight-forecast-grid-container">
+            <div className="weight-forecast-grid-item text-align-left">
+              <h2>Project weight selection to maintain a RPE {targetRPE}</h2>
+
+              <p>
+                Please note, this is a projection to help you predict your workout.
+                Your RPE will vary in application.
+              </p>
+            </div>
+            <div className="weight-forecast-grid-item text-align-right">
+              <div>{this.styledForecast(predictedSets)}</div>
+            </div>
+          </div>
         </div>
+        <h2>Total Projected Volume: {totalVolume}</h2>
       </div>
     );
   }

@@ -62,7 +62,7 @@ class CalculatorInputs extends React.PureComponent<Props> {
       updateWeight,
     } = this.props;
     return (
-      <div className={'padding-left'}>
+      <div>
         {this.WrappedNumberInput('Reps:', reps, updateReps)}
         {this.WrappedNumberInput('Weight:', weight, updateWeight)}
         <br />

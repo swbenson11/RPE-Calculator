@@ -43,7 +43,7 @@ class RPECalculator extends React.PureComponent<Props> {
 
     return (
       <div className="rpe-calculator">
-        <div className="grid-row">
+        <div className="grid-item">
           <h1>Rep Calculator</h1>
           <CalculatorInputs
             reps={reps}
@@ -56,7 +56,7 @@ class RPECalculator extends React.PureComponent<Props> {
             updateWeight={updateWeight}
           />
         </div>
-        <div className="grid-row">
+        <div className="grid-item">
           <CalculatorOutputs
             reps={reps}
             RPE={RPE}
