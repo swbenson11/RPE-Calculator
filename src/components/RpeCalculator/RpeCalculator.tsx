@@ -6,6 +6,8 @@ import { updateReps, updateRPE, updateWeight, updateTargetRPE } from './actions'
 import CalculatorInputs from './CalculatorInputs';
 import CalculatorOutputs from './CalculatorOutputs';
 
+import './RpeCalculator.scss';
+
 const mapState = (state: State) => ({
   reps: state.RPECalculator.reps,
   RPE: state.RPECalculator.RPE,
@@ -40,26 +42,28 @@ class RPECalculator extends React.PureComponent<Props> {
     } = this.props;
 
     return (
-      <div>
-        <h2>Rep Calculator</h2>
-
-        <CalculatorInputs
-          reps={reps}
-          RPE={RPE}
-          targetRPE={targetRPE}
-          weight={weight}
-          updateRPE={updateRPE}
-          updateTargetRPE={updateTargetRPE}
-          updateReps={updateReps}
-          updateWeight={updateWeight}
-        />
-
-        <CalculatorOutputs
-          reps={reps}
-          RPE={RPE}
-          targetRPE={targetRPE}
-          weight={weight}
-        />
+      <div className="rpe-calculator">
+        <div className="grid-item">
+          <h1>Rep Calculator</h1>
+          <CalculatorInputs
+            reps={reps}
+            RPE={RPE}
+            targetRPE={targetRPE}
+            weight={weight}
+            updateRPE={updateRPE}
+            updateTargetRPE={updateTargetRPE}
+            updateReps={updateReps}
+            updateWeight={updateWeight}
+          />
+        </div>
+        <div className="grid-item">
+          <CalculatorOutputs
+            reps={reps}
+            RPE={RPE}
+            targetRPE={targetRPE}
+            weight={weight}
+          />
+        </div>
       </div>
     );
   }

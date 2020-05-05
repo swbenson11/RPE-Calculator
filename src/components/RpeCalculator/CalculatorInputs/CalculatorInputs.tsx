@@ -2,7 +2,7 @@ import React = require('react');
 import { NumberInput } from '../../../ui/NumberInput';
 import { StyledDropdown } from '../../../ui/StyledDropdown';
 
-import './CalculatorInputs.css';
+import './CalculatorInputs.scss';
 
 type Props = {
   RPE: number;
@@ -24,10 +24,10 @@ class CalculatorInputs extends React.PureComponent<Props> {
   });
 
   WrappedNumberInput = (label: string, value: number, updateFunction: Function) => (
-    <div className={'calculatorInput'}>
+    <div className={'calculator-input'}>
       <label>{label}</label>
       <NumberInput
-        className={'calculatorInputItem'}
+        className={'calculator-input-item'}
         value={value}
         onChange={(value: number) => {
           updateFunction(value);
@@ -37,10 +37,10 @@ class CalculatorInputs extends React.PureComponent<Props> {
   );
 
   WrappedDropdown = (label: string, value: number, updateFunction: Function) => (
-    <div className={'calculatorInput'}>
+    <div className={'calculator-input'}>
       <label>{label}</label>
       <StyledDropdown
-        wrappingClass={'calculatorInputItem'}
+        wrappingClass={'calculator-input-item'}
         selectedValue={value}
         values={this.dropdownValues}
         onChange={(value: string) => {
@@ -62,13 +62,11 @@ class CalculatorInputs extends React.PureComponent<Props> {
       updateWeight,
     } = this.props;
     return (
-      <div className={'paddingLeft'}>
+      <div>
         {this.WrappedNumberInput('Reps:', reps, updateReps)}
-
         {this.WrappedNumberInput('Weight:', weight, updateWeight)}
-
+        <br />
         {this.WrappedDropdown('RPE:', RPE, updateRPE)}
-
         {this.WrappedDropdown('Next Target RPE:', targetRPE, updateTargetRPE)}
       </div>
     );

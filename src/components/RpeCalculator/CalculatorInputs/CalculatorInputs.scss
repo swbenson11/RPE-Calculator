@@ -1,17 +1,18 @@
 label {
   font-size: 16px;
   font-weight: bold;
-  width: 30%;
+  width: 50%;
   display: inline-block;
   padding-right: 15px;
 }
 
-.calculatorInput {
-  width: 400px;
+.calculator-input {
+  width: 300px;
   padding-bottom: 15px;
+  display: inline-block;
 }
 
-.calculatorInputItem {
+.calculator-input-item {
   display: inline-block;
-  width: 70%;
+  width: 50%;
 }
