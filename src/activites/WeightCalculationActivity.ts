@@ -1,13 +1,15 @@
-// There were two goals for this activity.
-// 1. Make a working Weight Calculator
-// 2. Mess around with functional programing concepts.
-// That's why there are two different version of this algorithm. I was trying
-// different approaches to functional programming.
+/*
+There were two goals for this activity.
+1. Make a working Weight Calculator
+2. Mess around with functional programing concepts.
+That's why there are two different version of this algorithm. I was trying
+different approaches to functional programming.
 
-// Calculation approach is to break the difference between RPE and targetRPE into
-// increments. Then adjust those increments for compounding factors (like how tired
-// you are from your last set) then multiply  for a factory of the weight. So the more
-// weight you are using, the greater the increments are worth
+Calculation approach is to break the difference between RPE and targetRPE into
+increments. Then adjust those increments for compounding factors (like how tired
+you are from your last set) then multiply  for a factory of the weight. So the more
+weight you are using, the greater the increments are worth
+*/
 import { pipe } from 'ramda';
 
 const LOWEST_WEIGHT_MULTIPLE = 5;

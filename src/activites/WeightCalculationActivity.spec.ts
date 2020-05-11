@@ -1,28 +1,28 @@
+/*
+So this is a testing file for the weight calculation.
+This is hard to test because of all the possible variables, and values that
+this code can produce. I'm trying to turn my "feels" in the gym into a
+mathematical formula.
+
+My testing approach was to first ensure that the increment value is being
+calculated correctly. Exporting this kinda breaks the encapsulation of this
+code, but I was using TDD to develop it and the whole point of function code is
+to break your logic down into reusable parts.
+
+Once I had my increments calculated, I set up an algorithm to determine the weight
+calculation. This is where is gets tricky. I made a series of tests, each isolating
+for a specific factor. I then ran it against test data from training. From that test
+data I was able to tune specific parts of the calculation so that it matched the
+results I saw in the gym. The reason individual methods aren't tested (except
+CalculateIncrementValue) is that I was tuning the whole of them to match an output,
+and didn't want a bunch of super specific tests coupled to individual private functions.
+*/
+
 import {
   WeightCalculationActivity,
   CalculateIncrementValue,
   CurriedWeightCalculationActivity,
 } from './WeightCalculationActivity';
-
-// So this is a testing file for the weight calculation.
-// This is hard to test because of all the possible variables, and values that
-// this code can produce. I'm trying to turn my "feels" in the gym into a
-// mathematical formula.
-
-// My testing approach was to first ensure that the
-// increment value is being calculated correctly. Exposing this kinda
-// breaks the encapsulation of this code, but I was using TDD to develop
-// it. Once I had my increments, I set up an algorithm to determine the
-// weight calculation. This is where is gets tricky. I made a series of
-// tests, each isolating for a specific factor. I then ran it against
-// test data from training. From that test data I was able to tune specific
-// parts of the calculation.
-
-// Problems with this approach:
-// It's hard to test individual parts
-// The tests are pretty brittle. One change to a calculation can break many tests.
-// However, this does encourage me to only tune the part of the calculation being
-// tested. Perhaps I could have used a range for my test values.
 
 describe('WeightCalculationActivity', () => {
   // logic without exponential growth of increment values:
