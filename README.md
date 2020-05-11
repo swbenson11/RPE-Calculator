@@ -6,6 +6,8 @@ Rpe is "Rate of Perceived Exertion", it's a tool for measuring effort in a set. 
 
 Because of the many factors of the calculation I thought this project would make for a good opportunity to experiment with different JavaScript concepts I had been reading about. The calculation logic can be found in src/activities. This includes some tests, and a bunch of comments on my thoughts so a potential employer would be able to take a look.
 
+For an example of me trying to develop a beautiful UI, check out [https://github.com/swbenson11/UI-and-svelt-demo](https://github.com/swbenson11/RPE-Calculator).
+
 ### Goals of project
 
 - Working RPE calculator
